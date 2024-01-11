@@ -2,6 +2,7 @@
 using UnityEditor;
 #endif
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ShipController : MonoBehaviour
 {
@@ -14,10 +15,12 @@ public class ShipController : MonoBehaviour
           yawForce = 2000f;
 
     Rigidbody rig;
+    [SerializeField] List<ShipEngine> _shipEngine;
+    [SerializeField] AnimateCockpitControls _animatonControls;
 
-    [SerializeField]
+   /* [SerializeField]
     [Range(-1f, 1f)]
-    float thrustAmount = 2f;
+    float thrustAmount = 2f;*/
 
     [SerializeField]
     [Range(-1f, 1f)]
@@ -37,9 +40,18 @@ public class ShipController : MonoBehaviour
         rig = GetComponent<Rigidbody>();
     }
 
+    void Start()
+    {
+        foreach (ShipEngine engine in _shipEngine)
+        {
+            engine.Init(MoveMentInput, rig, thrustForce / _shipEngine.Count);
+        }
+        _animatonControls.Init(MoveMentInput);
+    }
+
     private void Update()
     {
-        thrustAmount = MoveMentInput.ThrustAmount;
+        //thrustAmount = MoveMentInput.ThrustAmount;
         rollAmount = MoveMentInput.RollAmount;
         yawAmount = MoveMentInput.YawAmount;
         pitchAmount = MoveMentInput.PitchAmount;
@@ -60,10 +72,10 @@ public class ShipController : MonoBehaviour
             rig.AddTorque(transform.up * (yawAmount * yawForce * Time.fixedDeltaTime));
         }
 
-        if (!Mathf.Approximately(0f, thrustAmount))
+        /*if (!Mathf.Approximately(0f, thrustAmount))
         {
             rig.AddForce(transform.forward * (thrustForce * thrustAmount * Time.fixedDeltaTime));
-        }
+        }*/
     }
 
 #if UNITY_EDITOR

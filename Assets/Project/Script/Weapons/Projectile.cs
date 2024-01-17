@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,21 +19,20 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    Rigidbody _rig;
+    Rigidbody _rigidBody;
     float _duration;
 
     void Awake()
     {
-        _rig = GetComponent<Rigidbody>();
+        _rigidBody = GetComponent<Rigidbody>();
     }
 
     void OnEnable()
     {
-        _rig.AddForce(_launchForce * transform.forward);
+        _rigidBody.AddForce(_launchForce * transform.forward);
         _duration = _range;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (OutOfFuel) Destroy(gameObject);
@@ -41,6 +40,11 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"projectile collided with {collision.collider.name}");
+        IDamageable damageable = collision.collider.gameObject.GetComponent<IDamageable>();
+        if (damageable != null)
+        {
+            Vector3 hitPosition = collision.GetContact(0).point;
+            damageable.TakeDamage(_damage, hitPosition);
+        }
     }
 }

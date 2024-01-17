@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8872491162423323630}
   - component: {fileID: 7899411529398057734}
   - component: {fileID: 1218734377237749277}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2789889908512765018}
   - component: {fileID: 8302450018140905849}
   - component: {fileID: -6643816312490378288}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _launchForce: 10000
-  _damage: 100
+  _damage: 1000
   _range: 5
 --- !u!1 &8812699803743535440
 GameObject:
@@ -299,7 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 132500118457384869}
   - component: {fileID: 4644918820406369041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -123,3 +123,5 @@ MonoBehaviour:
   _fadeOutTime: 0.5
   _minIntensity: -10
   _maxIntensity: 0
+  _maxhealth: 5000
+  _explosionPrefabs: {fileID: 6932772648377674422, guid: 1a11e735b9cc0234cb52f57aebb757cc, type: 3}

@@ -961,7 +961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1517891847183182114
 Transform:
   m_ObjectHideFlags: 0
@@ -1030,15 +1030,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e16b9c7becbc2c439451882bd3c80ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movemetShip: {fileID: 1860147336922466129}
+  _inputControls: {fileID: 8082098324993056477}
   thrustForce: 7500
-  pitchForce: 3000
+  pitchForce: 1000
   rollForce: 1000
-  yawForce: 2000
+  yawForce: 500
   _shipEngine:
   - {fileID: 1294405872464426144}
   - {fileID: 5582280288158458413}
   _animatonControls: {fileID: 3430655793037084242}
+  blasters: []
+  thrustAmount: 2
   pitchAmount: 0
   rollAmount: 0
   yawAmount: 0
@@ -12878,7 +12880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7751041095904808929}
-  - component: {fileID: 1860147336922466129}
+  - component: {fileID: 8082098324993056477}
   m_Layer: 6
   m_Name: ShipMoveMentInput
   m_TagString: Untagged
@@ -12901,7 +12903,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1517891847183182114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1860147336922466129
+--- !u!114 &8082098324993056477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12910,7 +12912,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8977850286310526857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aac0d7623deee374ea9e8b27fe1104da, type: 3}
+  m_Script: {fileID: 11500000, guid: d28937284c2e32f4b9cc5dc9fff92ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _inputType: 0

@@ -11,7 +11,7 @@ public class ShipManagerInput : MonoBehaviour
         HumanMobile,
         Bot
     }    
-    public static IMoveMent GetInputControls(Inputtype inputType)
+    public static IMoveMent GetMoveMentControls(Inputtype inputType)
     {
         return inputType switch
         {
@@ -20,6 +20,17 @@ public class ShipManagerInput : MonoBehaviour
             Inputtype.Bot => null,
             _ => throw new ArgumentOutOfRangeException(nameof(inputType), inputType, message:    null)
         };
-    }    
+    }
+
+    public static IWeaponControls GetWeaponControls(Inputtype inputType)
+    {
+        return inputType switch
+        {
+            Inputtype.HumanDesk => new DesWeaponControls(),
+            Inputtype.HumanMobile => null,
+            Inputtype.Bot => null,
+            _ => throw new ArgumentOutOfRangeException(nameof(inputType), inputType, message: null)
+        };
+    }
 }
 

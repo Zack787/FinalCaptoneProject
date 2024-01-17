@@ -6,21 +6,20 @@ using System.Collections.Generic;
 
 public class ShipController : MonoBehaviour
 {
-    [SerializeField] ShipMoveMent movemetShip;
-    [SerializeField]
-    [Range(1000f, 10000f)]
-    float thrustForce = 7500f,
-          pitchForce = 6000f,
-          rollForce = 1000f,
-          yawForce = 2000f;
+    [SerializeField] ShipInputControls _inputControls;
+    
 
     Rigidbody rig;
     [SerializeField] List<ShipEngine> _shipEngine;
     [SerializeField] AnimateCockpitControls _animatonControls;
+    [SerializeField]  List<Blaster> blasters;
+    
+    [SerializeField]
+    ShipDataSo _shipData;
 
-   /* [SerializeField]
+    [SerializeField]
     [Range(-1f, 1f)]
-    float thrustAmount = 2f;*/
+    float thrustAmount = 2f;
 
     [SerializeField]
     [Range(-1f, 1f)]
@@ -34,7 +33,8 @@ public class ShipController : MonoBehaviour
     [Range(-1f, 1f)]
     float yawAmount = 0f;
 
-    IMoveMent MoveMentInput => movemetShip.MovementControls;
+    IMoveMent MoveMentInput => _inputControls.MovementControls;
+    IWeaponControls WeaponInput => _inputControls.WeaponControls;
     void Awake()
     {
         rig = GetComponent<Rigidbody>();
@@ -44,9 +44,17 @@ public class ShipController : MonoBehaviour
     {
         foreach (ShipEngine engine in _shipEngine)
         {
-            engine.Init(MoveMentInput, rig, thrustForce / _shipEngine.Count);
+            engine.Init(MoveMentInput, rig, _shipData.ThrustForce / _shipEngine.Count);
         }
         _animatonControls.Init(MoveMentInput);
+        foreach (Blaster blaster in blasters)
+        {
+            blaster.Init(WeaponInput, _shipData.BlasterCooldown, _shipData.BlasterLaunchForce, _shipData.BlasterProjectileDuration, _shipData.BlasterDamage);
+        }
+        if(_animatonControls!= null)
+        {
+            _animatonControls.Init(MoveMentInput);
+        }
     }
 
     private void Update()
@@ -60,16 +68,16 @@ public class ShipController : MonoBehaviour
     {
         if (!Mathf.Approximately(a: 0f, b: pitchAmount))
         {
-            rig.AddTorque(transform.right * (pitchForce * pitchAmount * Time.fixedDeltaTime));
+            rig.AddTorque(transform.right * (_shipData.PitchForce * pitchAmount * Time.fixedDeltaTime));
         }
         if (!Mathf.Approximately(0f, rollAmount))
         {
-            rig.AddTorque(transform.forward * (rollForce * rollAmount * Time.fixedDeltaTime));
+            rig.AddTorque(transform.forward * (_shipData.RollForce * rollAmount * Time.fixedDeltaTime));
         }
 
         if (!Mathf.Approximately(0f, yawAmount))
         {
-            rig.AddTorque(transform.up * (yawAmount * yawForce * Time.fixedDeltaTime));
+            rig.AddTorque(transform.up * (yawAmount * _shipData.YawForce * Time.fixedDeltaTime));
         }
 
         /*if (!Mathf.Approximately(0f, thrustAmount))

@@ -1,7 +1,7 @@
 
 using System;
 using UnityEngine;
-    
+
 public class DesMoveControl : MoveMentControlBase
 {
     [SerializeField] float deadzoneRadius = 0.1f;

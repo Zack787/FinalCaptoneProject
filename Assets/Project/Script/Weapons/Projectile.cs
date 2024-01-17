@@ -32,10 +32,21 @@ public class Projectile : MonoBehaviour
         _rigidBody.AddForce(_launchForce * transform.forward);
         _duration = _range;
     }
-
+    private void OnDisable()
+    {
+        _rigidBody.velocity = Vector3.zero;
+        _rigidBody.angularVelocity = Vector3.zero;
+    }
     void Update()
     {
         if (OutOfFuel) Destroy(gameObject);
+    }
+    public void Init(int launchForce, int damage, float range)
+    {
+        Debug.Log($"Projectile({launchForce}, {damage}, {range}");
+        _launchForce = launchForce;
+        _damage = damage;
+        _range = range;
     }
 
     void OnCollisionEnter(Collision collision)

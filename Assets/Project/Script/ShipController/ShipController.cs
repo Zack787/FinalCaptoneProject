@@ -6,13 +6,17 @@ using System.Collections.Generic;
 
 public class ShipController : MonoBehaviour
 {
-    [SerializeField] ShipInputControls _inputControls;
+    [Header("Ship Input Controls")]
+    [SerializeField] MoveMentControlBase _movementControls;
+    [SerializeField] WeaponControlsBase _weaponControls;
     
 
     Rigidbody rig;
+
+    [Header("Ship Components")]
     [SerializeField] List<ShipEngine> _shipEngine;
     [SerializeField] AnimateCockpitControls _animatonControls;
-    [SerializeField]  List<Blaster> blasters;
+    [SerializeField] List<Blaster> blasters;
     
     [SerializeField]
     ShipDataSo _shipData;
@@ -33,8 +37,8 @@ public class ShipController : MonoBehaviour
     [Range(-1f, 1f)]
     float yawAmount = 0f;
 
-    IMoveMent MoveMentInput => _inputControls.MovementControls;
-    IWeaponControls WeaponInput => _inputControls.WeaponControls;
+    IMoveMent MoveMentInput => _movementControls;
+    IWeaponControls WeaponInput => _weaponControls;
     void Awake()
     {
         rig = GetComponent<Rigidbody>();
@@ -46,7 +50,7 @@ public class ShipController : MonoBehaviour
         {
             engine.Init(MoveMentInput, rig, _shipData.ThrustForce / _shipEngine.Count);
         }
-        _animatonControls.Init(MoveMentInput);
+    
         foreach (Blaster blaster in blasters)
         {
             blaster.Init(WeaponInput, _shipData.BlasterCooldown, _shipData.BlasterLaunchForce, _shipData.BlasterProjectileDuration, _shipData.BlasterDamage);

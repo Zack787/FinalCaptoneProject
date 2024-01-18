@@ -9,7 +9,8 @@ public class CameraManager : MonoBehaviour
     {
         NoCamera = -1,
         PhongdieukhienCam = 0,
-        FollowCam,
+        FollowCam =1,
+        EnemyFollowCamera = 2,
     }
     [SerializeField] List<GameObject> _virtualCam;
     VirtualCameras CameraKeyPress

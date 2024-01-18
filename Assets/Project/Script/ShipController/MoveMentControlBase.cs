@@ -1,6 +1,6 @@
+using UnityEngine;
 
-
-public abstract class MoveMentControlBase : IMoveMent
+public abstract class MoveMentControlBase : MonoBehaviour, IMoveMent
 {
    public abstract float YawAmount { get; }
     public abstract float PitchAmount { get; }

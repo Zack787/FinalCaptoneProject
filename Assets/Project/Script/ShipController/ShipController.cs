@@ -9,7 +9,7 @@ public class ShipController : MonoBehaviour
     [Header("Ship Input Controls")]
     [SerializeField] MoveMentControlBase _movementControls;
     [SerializeField] WeaponControlsBase _weaponControls;
-    
+   
 
     Rigidbody rig;
 
@@ -21,9 +21,9 @@ public class ShipController : MonoBehaviour
     [SerializeField]
     ShipDataSo _shipData;
 
-    [SerializeField]
+  /*  [SerializeField]
     [Range(-1f, 1f)]
-    float thrustAmount = 2f;
+    float thrustAmount = 2f;*/
 
     [SerializeField]
     [Range(-1f, 1f)]

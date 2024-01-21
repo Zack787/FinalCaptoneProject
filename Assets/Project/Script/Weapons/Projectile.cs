@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
     [SerializeField] [Range(10, 1000)] int _damage = 100;
     [SerializeField] [Range(2f, 10f)] float _range = 5f;
 
+    //[SerializeField] private Detonator _hitEffect;
+
     bool OutOfFuel
     {
         get
@@ -43,7 +45,7 @@ public class Projectile : MonoBehaviour
     }
     public void Init(int launchForce, int damage, float range)
     {
-        Debug.Log($"Projectile({launchForce}, {damage}, {range}");
+        //Debug.Log($"Projectile({launchForce}, {damage}, {range}");
         _launchForce = launchForce;
         _damage = damage;
         _range = range;
@@ -57,5 +59,11 @@ public class Projectile : MonoBehaviour
             Vector3 hitPosition = collision.GetContact(0).point;
             damageable.TakeDamage(_damage, hitPosition);
         }
+
+        /*if (_hitEffect != null)
+        {
+            Instantiate(_hitEffect, transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);*/
     }
 }

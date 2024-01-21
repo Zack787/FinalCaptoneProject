@@ -3,6 +3,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class ShipController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ShipController : MonoBehaviour
    
 
     Rigidbody rig;
+    DamageHandler _damageHandler;
+
 
     [Header("Ship Components")]
     [SerializeField] List<ShipEngine> _shipEngine;
@@ -42,6 +45,7 @@ public class ShipController : MonoBehaviour
     void Awake()
     {
         rig = GetComponent<Rigidbody>();
+        _damageHandler = GetComponent<DamageHandler>();
     }
 
     void Start()
@@ -60,6 +64,16 @@ public class ShipController : MonoBehaviour
             _animatonControls.Init(MoveMentInput);
         }
     }
+
+    void OnEnable()
+    {
+        if (_damageHandler == null) return;
+        _damageHandler.Init(_shipData.MaxHealth);
+        _damageHandler.HealthChanged.AddListener(OnHealthChanged);
+        _damageHandler.ObjectDestroyed.AddListener(DestroyShip);
+    }
+
+   
 
     private void Update()
     {
@@ -88,7 +102,18 @@ public class ShipController : MonoBehaviour
         {
             rig.AddForce(transform.forward * (thrustForce * thrustAmount * Time.fixedDeltaTime));
         }*/
+
     }
+    private void DestroyShip()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnHealthChanged()
+    {
+        Debug.Log($"{gameObject.name} health is {_damageHandler.Health} / {_damageHandler.Maxhealth}");    
+    }
+
 
 #if UNITY_EDITOR
     [CustomEditor(typeof(ShipController))]

@@ -15,7 +15,7 @@ MonoBehaviour:
   thrustForce: 7500
   pitchForce: 1500
   rollForce: 1000
-  yawForce: 500
+  yawForce: 1000
   _shieldStrength: 5000
   _shieldRegenAmount: 100
   _maxHealth: 1000

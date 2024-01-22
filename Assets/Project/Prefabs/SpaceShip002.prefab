@@ -955,6 +955,7 @@ GameObject:
   - component: {fileID: 1205772186684613094}
   - component: {fileID: 355068588397422941}
   - component: {fileID: 3764382491290336350}
+  - component: {fileID: 7258239246376345066}
   m_Layer: 6
   m_Name: SpaceShip002
   m_TagString: Untagged
@@ -1014,7 +1015,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &1205772186684613094
@@ -1029,14 +1030,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e16b9c7becbc2c439451882bd3c80ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputControls: {fileID: 0}
+  _movementControls: {fileID: 0}
+  _weaponControls: {fileID: 0}
   _shipEngine:
   - {fileID: 1294405872464426144}
   - {fileID: 5582280288158458413}
   _animatonControls: {fileID: 3430655793037084242}
-  blasters: []
-  _shipData: {fileID: 0}
-  thrustAmount: 2
+  blasters:
+  - {fileID: 5668192853756130556}
+  - {fileID: 3024910406149963093}
+  _shipData: {fileID: 11400000, guid: afac45ca177d138459259ceda1745093, type: 2}
   pitchAmount: 0
   rollAmount: 0
   yawAmount: 0
@@ -5837,6 +5840,27 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7258239246376345066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858384991149591905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4851d493999824ba3da14e626d5865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blipPrefab: {fileID: 7590614434844931334, guid: ecfb6be847c158b408537990a12f2e84, type: 3}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _radarRange: 1081
+  _maxTargets: 200
+  _refreshDelay: 0.25
+  _radarScreen: {fileID: 5207587234102300510}
+  _player: {fileID: 1517891847183182114}
 --- !u!1 &878220497923965826
 GameObject:
   m_ObjectHideFlags: 0
@@ -6492,7 +6516,7 @@ Transform:
   m_GameObject: {fileID: 1755712930860714144}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -2.1241757e-15, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.0699997}
+  m_LocalPosition: {x: 0, y: 0, z: 2.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7995,7 +8019,7 @@ Transform:
   m_GameObject: {fileID: 3477410490063945766}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 2.07}
+  m_LocalPosition: {x: 0, y: 0, z: 2.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9411,13 +9435,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5207587234102300510}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000015893253, y: 0.00000004371139, z: 0.00000004371139, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1500635, z: -0.12912369}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0.072, z: -0.207}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5132094457129297990}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!33 &2441869807749993722
 MeshFilter:
   m_ObjectHideFlags: 0

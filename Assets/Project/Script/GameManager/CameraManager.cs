@@ -1,18 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
+using UnityEngine.Events;
 public class CameraManager : MonoBehaviour
 {
     enum VirtualCameras
     {
-        NoCamera = -1,
-        PhongdieukhienCam = 0,
-        FollowCam =1,
+        NoSelection = -1,
+        CockpitCamera = 0,
+        FollowCamera = 1,
         EnemyFollowCamera = 2,
     }
     [SerializeField] List<GameObject> _virtualCam;
+
+    public Transform ActiveCamera { get; private set; }
+    public UnityEvent ActiveCameraChanged;
     VirtualCameras CameraKeyPress
     {
         get
@@ -22,32 +23,45 @@ public class CameraManager : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha1 + i))
                     return (VirtualCameras)i;
             }
-            return VirtualCameras.NoCamera;
+            return VirtualCameras.NoSelection;
         }
        
-    }    
-    // Start is called before the first frame update
+    }
+    void Awake()
+    {
+        ActiveCameraChanged = new UnityEvent();
+    }
     void Start()
     {
-        SetActiveCamera(VirtualCameras.PhongdieukhienCam);
+        SetActiveCamera(VirtualCameras.CockpitCamera);
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         SetActiveCamera(CameraKeyPress);
     }
-     void SetActiveCamera(VirtualCameras activeCamera)
+     void SetActiveCamera(VirtualCameras selectedCamera)
     {
-        if (activeCamera == VirtualCameras.NoCamera)
+        if (selectedCamera == VirtualCameras.NoSelection)
         {
             
             return;
         }
-     
-        foreach (GameObject cam in _virtualCam)
+
+        VirtualCameras camIndex = VirtualCameras.CockpitCamera;
+        foreach (var cam in _virtualCam)
         {
-            cam.SetActive(cam.tag.Equals(activeCamera.ToString()));
+            if (camIndex++ == selectedCamera)
+            {
+                cam.gameObject.SetActive(true);
+                ActiveCamera = cam.transform;
+                ActiveCameraChanged.Invoke();
+            }
+            else
+            {
+                cam.gameObject.SetActive(false);
+            }
         }
     }    
 }

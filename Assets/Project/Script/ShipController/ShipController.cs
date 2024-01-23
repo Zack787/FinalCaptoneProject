@@ -7,6 +7,8 @@ using System;
 
 public class ShipController : MonoBehaviour
 {
+    [SerializeField] Shield _shield;
+
     [Header("Ship Input Controls")]
     [SerializeField] MoveMentControlBase _movementControls;
     [SerializeField] WeaponControlsBase _weaponControls;
@@ -23,6 +25,8 @@ public class ShipController : MonoBehaviour
     
     [SerializeField]
     ShipDataSo _shipData;
+
+
 
   /*  [SerializeField]
     [Range(-1f, 1f)]
@@ -57,12 +61,17 @@ public class ShipController : MonoBehaviour
     
         foreach (Blaster blaster in blasters)
         {
-            blaster.Init(WeaponInput, _shipData.BlasterCooldown, _shipData.BlasterLaunchForce, _shipData.BlasterProjectileDuration, _shipData.BlasterDamage);
+            blaster.Init(WeaponInput, _shipData.BlasterCooldown, _shipData.BlasterLaunchForce, _shipData.BlasterProjectileDuration, _shipData.BlasterDamage, rig);
         }
         if(_animatonControls!= null)
         {
             _animatonControls.Init(MoveMentInput);
         }
+        if (_shield)
+        {
+            _shield.Init(_shipData.ShieldStrength);
+        }
+
     }
 
     void OnEnable()

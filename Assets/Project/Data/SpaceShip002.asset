@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustForce: 7500
   pitchForce: 1500
-  rollForce: 1000
+  rollForce: 1100
   yawForce: 1000
   _shieldStrength: 500
   _shieldRegenAmount: 100

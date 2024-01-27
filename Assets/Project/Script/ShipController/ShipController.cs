@@ -1,80 +1,72 @@
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-using UnityEngine;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
     [SerializeField] Shield _shield;
+    [SerializeField]
+    protected MoveMentControlBase _movementControls;
 
-    [Header("Ship Input Controls")]
-    [SerializeField] MoveMentControlBase _movementControls;
-    [SerializeField] WeaponControlsBase _weaponControls;
-   
+    [SerializeField]
+    protected WeaponControlsBase _weaponControls;
 
-    Rigidbody rig;
-    DamageHandler _damageHandler;
-
-
-    [Header("Ship Components")]
-    [SerializeField] List<ShipEngine> _shipEngine;
-    [SerializeField] AnimateCockpitControls _animatonControls;
-    [SerializeField] List<Blaster> blasters;
-    
     [SerializeField]
     ShipDataSo _shipData;
 
-
-
-  /*  [SerializeField]
-    [Range(-1f, 1f)]
-    float thrustAmount = 2f;*/
+    [SerializeField]
+    List<ShipEngine> _engines;
 
     [SerializeField]
-    [Range(-1f, 1f)]
-    float pitchAmount = 0f;
+    List<Blaster> _blasters;
+
+    [SerializeField] protected List<MissileLauncher> _missileLaunchers;
 
     [SerializeField]
-    [Range(-1f, 1f)]
-    float rollAmount = 0f;
+    private AnimateCockpitControls _cockpitAnimationControls;
 
-    [SerializeField]
+    Rigidbody _rigidBody;
     [Range(-1f, 1f)]
-    float yawAmount = 0f;
+    float _pitchAmount, _rollAmount, _yawAmount = 0f;
 
-    IMoveMent MoveMentInput => _movementControls;
+    protected DamageHandler _damageHandler;
+
+    IMoveMent MovementInput => _movementControls;
     IWeaponControls WeaponInput => _weaponControls;
+
     void Awake()
     {
-        rig = GetComponent<Rigidbody>();
+        _rigidBody = GetComponent<Rigidbody>();
         _damageHandler = GetComponent<DamageHandler>();
     }
-
     void Start()
     {
-        foreach (ShipEngine engine in _shipEngine)
+        foreach (ShipEngine engine in _engines)
         {
-            engine.Init(MoveMentInput, rig, _shipData.ThrustForce / _shipEngine.Count);
+            engine.Init(MovementInput, _rigidBody, _shipData.ThrustForce / _engines.Count);
         }
-    
-        foreach (Blaster blaster in blasters)
+
+        foreach (Blaster blaster in _blasters)
         {
-            blaster.Init(WeaponInput, _shipData.BlasterCooldown, _shipData.BlasterLaunchForce, _shipData.BlasterProjectileDuration, _shipData.BlasterDamage, rig);
+            blaster.Init(WeaponInput, _shipData.BlasterCooldown, _shipData.BlasterLaunchForce, _shipData.BlasterProjectileDuration, _shipData.BlasterDamage, _rigidBody);
         }
-        if(_animatonControls!= null)
+
+        foreach (MissileLauncher launcher in _missileLaunchers)
         {
-            _animatonControls.Init(MoveMentInput);
+            launcher.Init(WeaponInput);
         }
+
+        if (_cockpitAnimationControls != null)
+        {
+            _cockpitAnimationControls.Init(MovementInput);
+        }
+
         if (_shield)
         {
             _shield.Init(_shipData.ShieldStrength);
         }
-
     }
 
-    void OnEnable()
+    public virtual void OnEnable()
     {
         if (_damageHandler == null) return;
         _damageHandler.Init(_shipData.MaxHealth);
@@ -82,60 +74,39 @@ public class ShipController : MonoBehaviour
         _damageHandler.ObjectDestroyed.AddListener(DestroyShip);
     }
 
-   
-
-    private void Update()
+    public virtual void Update()
     {
-        //thrustAmount = MoveMentInput.ThrustAmount;
-        rollAmount = MoveMentInput.RollAmount;
-        yawAmount = MoveMentInput.YawAmount;
-        pitchAmount = MoveMentInput.PitchAmount;
+        _rollAmount = MovementInput.RollAmount;
+        _yawAmount = MovementInput.YawAmount;
+        _pitchAmount = MovementInput.PitchAmount;
     }
-    private void FixedUpdate()
+
+    void FixedUpdate()
     {
-        if (!Mathf.Approximately(a: 0f, b: pitchAmount))
+        if (!Mathf.Approximately(0f, _pitchAmount))
         {
-            rig.AddTorque(transform.right * (_shipData.PitchForce * pitchAmount * Time.fixedDeltaTime));
-        }
-        if (!Mathf.Approximately(0f, rollAmount))
-        {
-            rig.AddTorque(transform.forward * (_shipData.RollForce * rollAmount * Time.fixedDeltaTime));
+            _rigidBody.AddTorque(transform.right * (_shipData.PitchForce * _pitchAmount * Time.fixedDeltaTime));
         }
 
-        if (!Mathf.Approximately(0f, yawAmount))
+        if (!Mathf.Approximately(0f, _rollAmount))
         {
-            rig.AddTorque(transform.up * (yawAmount * _shipData.YawForce * Time.fixedDeltaTime));
+            _rigidBody.AddTorque(transform.forward * (_shipData.RollForce * _rollAmount * Time.fixedDeltaTime));
         }
 
-        /*if (!Mathf.Approximately(0f, thrustAmount))
+        if (!Mathf.Approximately(0f, _yawAmount))
         {
-            rig.AddForce(transform.forward * (thrustForce * thrustAmount * Time.fixedDeltaTime));
-        }*/
-
+            _rigidBody.AddTorque(transform.up * (_yawAmount * _shipData.YawForce * Time.fixedDeltaTime));
+        }
     }
-    private void DestroyShip()
+
+    void DestroyShip()
     {
         gameObject.SetActive(false);
     }
 
-    private void OnHealthChanged()
+    void OnHealthChanged()
     {
-        Debug.Log($"{gameObject.name} health is {_damageHandler.Health} / {_damageHandler.Maxhealth}");    
     }
 
 
-#if UNITY_EDITOR
-    [CustomEditor(typeof(ShipController))]
-    public class ShipControllerEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-
-            ShipController shipController = (ShipController)target;
-
-            // Add custom editor fields or functionality here if needed
-        }
-    }
-#endif
 }

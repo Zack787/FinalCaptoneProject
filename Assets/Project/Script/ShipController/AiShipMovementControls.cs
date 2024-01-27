@@ -103,4 +103,8 @@ public partial class AiShipMovementControls : MoveMentControlBase
             _horizontalAvoidance = _collisionAvoidance.HorizontalAvoidance;
         }
     }
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
 }

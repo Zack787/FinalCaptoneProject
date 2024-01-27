@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustForce: 7500
   pitchForce: 1500
-  rollForce: 1100
-  yawForce: 1000
-  _shieldStrength: 500
+  rollForce: 1500
+  yawForce: 1500
+  _shieldStrength: 1000
   _shieldRegenAmount: 100
-  _maxHealth: 1000
+  _maxHealth: 2000
   _blasterDamage: 100
   _blasterLaunchForce: 10000
   _blasterCoolDown: 0.25

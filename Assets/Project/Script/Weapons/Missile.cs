@@ -1,15 +1,18 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Missile : MonoBehaviour
 {
-    [SerializeField] float _speed = 1500f, _rotateSpeed = 150f, _range = 10f, _armingTime = 0.5f;
+    [SerializeField] float _speed = 150f, _rotateSpeed = 150f, _range = 10f, _armingTime = 0.5f;
     [SerializeField] int _damage = 1000;
     [SerializeField] GameObject _explosionPrefab;
+    [SerializeField] AudioClip _impactSound;
 
     Transform _transform, _target;
     Rigidbody _rigidbody;
     float _duration, _armDelay;
     Collider _collider;
+    AudioSource _audioSource;
 
     bool OutOfFuel
     {
@@ -34,6 +37,7 @@ public class Missile : MonoBehaviour
         _transform = transform;
         _collider = GetComponent<Collider>();
         _rigidbody = GetComponent<Rigidbody>();
+        _audioSource = SoundManager.Configure3DAudioSource(GetComponent<AudioSource>());
     }
 
     public void Init(Transform target)
@@ -73,18 +77,14 @@ public class Missile : MonoBehaviour
         _rigidbody.velocity = _transform.forward * _speed;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision other)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (_impactSound) _audioSource.PlayOneShot(_impactSound);
+        if (other.collider.TryGetComponent<IDamageable>(out var damageable))
         {
-            var damageable = collision.collider.GetComponent<IDamageable>();
-            if (damageable != null)
-            {
-                damageable.TakeDamage(_damage, collision.GetContact(0).point);
-            }
-
-            DestroyMissile();
+            damageable.TakeDamage(_damage, other.GetContact(0).point);
         }
+        DestroyMissile();
     }
 
     void DestroyMissile()

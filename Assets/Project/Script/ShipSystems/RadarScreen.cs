@@ -33,7 +33,8 @@ public class RadarScreen : MonoBehaviour
     Collider[] _targetColliders;
 
     public Transform LockedOnTarget { get; private set; }
-
+    int TargetIsRange => _targetsInRange.Count;
+    bool InCombat { get; set; }
     void Awake()
     {
         if (!_radarScreen) return;
@@ -72,6 +73,16 @@ public class RadarScreen : MonoBehaviour
     {
         DrawTargetBlips();
         UIManager.Instance.UpdateTargetIndicators(_targetsInRange, LockedOnTarget ? LockedOnTarget.GetInstanceID() : -1);
+        if(TargetIsRange > 0)
+        {
+            if (InCombat) return;
+            InCombat = true;
+            GameManager.Instance.InCombat(true);
+            return;
+        }
+        if (!InCombat) return;
+        InCombat = false;
+        GameManager.Instance.InCombat(false);
     }
 
     IEnumerator RefreshTargetList()

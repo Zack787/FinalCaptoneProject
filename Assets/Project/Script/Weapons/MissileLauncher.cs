@@ -7,13 +7,13 @@ public class MissileLauncher : MonoBehaviour
     [SerializeField] int _missiles = 4, _reloads = 2;
     [SerializeField] float _coolDown = 2f, _reloadTime = 60f;
 
-   /* public int MissileCapacity => _missiles;
+    public int MissileCapacity => _missiles;
     public int Missiles => _missilesRemaining;
     public float ReloadPercent => 1f - (_reloadDelay / _reloadTime);
     public int Reloads => _reloadsRemaining;
-    public bool Reloading => _missilesRemaining < 1 && _reloadsRemaining > 0 && _reloadDelay > 0f;*/
+    public bool Reloading => _missilesRemaining < 1 && _reloadsRemaining > 0 && _reloadDelay > 0f;
 
-    /*public UnityEvent MissileFired, MissilesReloaded;*/
+    public UnityEvent MissileFired, MissilesReloaded;
 
     Transform _transform;
     RadarScreen _radarScreen;
@@ -42,8 +42,8 @@ public class MissileLauncher : MonoBehaviour
 
     void Awake()
     {
-      /*  MissileFired = new UnityEvent();
-        MissilesReloaded = new UnityEvent();*/
+        MissileFired = new UnityEvent();
+        MissilesReloaded = new UnityEvent();
         _transform = transform;
         _radarScreen = FindObjectOfType<RadarScreen>();
     }
@@ -80,7 +80,7 @@ public class MissileLauncher : MonoBehaviour
         missile.gameObject.SetActive(true);
         _missilesRemaining--;
         _fireDelay = _coolDown;
-       /* MissileFired.Invoke();*/
+        MissileFired.Invoke();
     }
 
     void ReloadMissiles()
@@ -89,6 +89,6 @@ public class MissileLauncher : MonoBehaviour
         _missilesRemaining = _missiles;
         _reloadDelay = _reloadTime;
         _fireDelay = 0f;
-/*        MissilesReloaded.Invoke();*/
+        MissilesReloaded.Invoke();
     }
 }

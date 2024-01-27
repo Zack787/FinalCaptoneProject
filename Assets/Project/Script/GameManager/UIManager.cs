@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TargetIndicator _targetIndicatorPrefab;
     [SerializeField] Canvas _mainCanvas;
-
+    
     public static UIManager Instance;
 
     List<TargetIndicator> _targetIndicators;

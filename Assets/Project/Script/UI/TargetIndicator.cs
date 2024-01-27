@@ -1,5 +1,4 @@
 
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,7 @@ public class TargetIndicator : MonoBehaviour
     RectTransform _rectTransform, _canvasRect;
 
     Vector3 _screenCenter = Vector3.zero;
-    TextMeshPro textMeshPro;
+
 
     Vector3 ScreenCenter
     {

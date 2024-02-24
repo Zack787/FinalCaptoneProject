@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyShipPrefabs:
   - {fileID: 4082912883366656397, guid: 1f10593601ad6244d87c7a46b6310dc2, type: 3}
-  _maxEnemies: 1
+  _maxEnemies: 5
   _firstSpawnInterval: 10
   _spawnInterval: 30
   _minSpawnRange: 500
@@ -3002,8 +3002,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518970965}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.043619405, y: -0, z: -0, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: -0.65, z: 16.23}
+  m_LocalRotation: {x: -0.0011627984, y: 0.00000001720624, z: 2.0007402e-11, w: 0.99999934}
+  m_LocalPosition: {x: 0, y: -1.16, z: 2.1000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3085,7 +3085,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 82.6
+  field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: 0

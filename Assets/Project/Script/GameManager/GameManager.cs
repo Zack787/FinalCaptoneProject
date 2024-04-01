@@ -1,12 +1,12 @@
-using System;
+﻿using System;
 using UnityEngine;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     bool ShouldQuitGame => Input.GetKeyUp(KeyCode.Escape);
-
+  
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
     }
-
+  
     void OnEnable()
     {
         MusicManager.Instance.PlayPatrolMusic();
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
         if (ShouldQuitGame)
         {
             QuitGame();
@@ -58,6 +59,8 @@ public class GameManager : MonoBehaviour
 
         MusicManager.Instance.PlayPatrolMusic();
     }
+   
+
     void QuitGame()
     {
 #if UNITY_EDITOR

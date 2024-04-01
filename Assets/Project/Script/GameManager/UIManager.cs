@@ -2,13 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TargetIndicator _targetIndicatorPrefab;
     [SerializeField] Canvas _mainCanvas;
-    
+
+    public GameObject pauseMenu;
+
     public static UIManager Instance;
 
     List<TargetIndicator> _targetIndicators;
@@ -50,5 +53,22 @@ public class UIManager : MonoBehaviour
             targetIndicator.gameObject.SetActive(targets.Any(target => target.GetInstanceID() == targetIndicator.Key));
             targetIndicator.LockedOn = targetIndicator.Key == lockedOnTarget;
         }
+    }
+
+    public void OnClickPauseMenu()
+    {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+    }
+
+    public void OnClickResume()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void OnClickQuit()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

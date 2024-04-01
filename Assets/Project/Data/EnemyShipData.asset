@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: EnemyShipData
   m_EditorClassIdentifier: 
   thrustForce: 7000
-  pitchForce: 1400
-  rollForce: 1000
-  yawForce: 1200
+  pitchForce: 7077
+  rollForce: 7077
+  yawForce: 7077
   _shieldStrength: 1000
   _shieldRegenAmount: 100
   _maxHealth: 1000
   _blasterDamage: 100
-  _blasterLaunchForce: 7500
-  _blasterCoolDown: 1
-  _blasterProjectileDuration: 3
+  _blasterLaunchForce: 16635
+  _blasterCoolDown: 3
+  _blasterProjectileDuration: 7.19

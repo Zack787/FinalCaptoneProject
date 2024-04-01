@@ -30,7 +30,7 @@ public class EnemyShipController : ShipController
     #region Public data for debugging
 
     public string ShipState => _state.ToString();
-    public string TargetName => _target ? _target.name : "none";
+    public string TargetName => _target ? _target.name : "Player";
 
     public string DistanceToTarget
     {

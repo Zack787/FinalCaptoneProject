@@ -20,6 +20,6 @@ MonoBehaviour:
   _shieldRegenAmount: 100
   _maxHealth: 2000
   _blasterDamage: 100
-  _blasterLaunchForce: 10000
+  _blasterLaunchForce: 10192
   _blasterCoolDown: 0.25
   _blasterProjectileDuration: 2

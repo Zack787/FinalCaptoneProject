@@ -1,4 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
+
+using UnityEngine.AI;
 
 public class AiShipWeaponControls : WeaponControlsBase
 {
@@ -19,6 +21,8 @@ public class AiShipWeaponControls : WeaponControlsBase
     {
         _firePrimary = CanFirePrimary();
         _fireSecondary = CanFireSecondary();
+        // Debug.Log để kiểm tra giá trị của _firePrimary và _fireSecondary
+        Debug.Log($"Primary fired: {_firePrimary}, Secondary fired: {_fireSecondary}");
     }
 
     bool CanFirePrimary()
@@ -40,5 +44,7 @@ public class AiShipWeaponControls : WeaponControlsBase
         _target = target;
         _attackRange = attackRange;
         _layerMask = targetMask;
+        // Debug.Log để kiểm tra liệu SetTarget đã được gọi chưa
+        Debug.Log("Target set: " + target.name);
     }
 }

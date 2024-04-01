@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
-public class Projectile : MonoBehaviour
+public class AIProjectile : MonoBehaviour
 {
     [SerializeField]
     [Range(5000f, 25000f)]
@@ -65,7 +65,7 @@ public class Projectile : MonoBehaviour
             damageable.TakeDamage(_damage, hitPosition);
         }
 
-        /*if (_hitEffect != null)
+       /* if (_hitEffect != null)
         {
             Instantiate(_hitEffect, transform.position, Quaternion.identity);
         }

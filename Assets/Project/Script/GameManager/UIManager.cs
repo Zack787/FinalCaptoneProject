@@ -55,11 +55,11 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OnClickPauseMenu()
+   /* public void OnClickPauseMenu()
     {
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
-    }
+    }*/
 
     public void OnClickResume()
     {

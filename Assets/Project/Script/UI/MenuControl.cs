@@ -21,7 +21,7 @@ public class MenuControl : MonoBehaviour
     }
     public void Play()
     {
-        Application.LoadLevel("SampleScene");
+        Application.LoadLevel("ChooseRound");
         Time.timeScale = 1;
     }
     

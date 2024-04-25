@@ -38,8 +38,9 @@ public class AIBlaster : MonoBehaviour
         if (CanFire && _weaponInput.PrimaryFired)
         {
             FireProjectile();
-           
+            Debug.Log("Da ban");
         }
+        Debug.Log($"CanFire: {CanFire}");
     }
 
     public void Init(

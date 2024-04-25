@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +12,6 @@ public partial class AiShipMovementControls : MoveMentControlBase
     [SerializeField] PIDController _pitchPidController;
     [SerializeField] CollisionAvoidance _collisionAvoidance;
 
-
     public override float YawAmount => _yawAmount;
     public override float PitchAmount => _pitchAmount;
     public override float RollAmount => _rollAmount;
@@ -22,58 +20,69 @@ public partial class AiShipMovementControls : MoveMentControlBase
     float DistanceToTarget => _target ? Vector3.Distance(_target.position, _transform.position) : 0f;
 
     public Vector3 _localDirection;
-    public float _distanceToTaget;
+    public float _distanceToTarget;
     public float _yaw, _pitch, _thrust;
     Transform _transform;
     float _yawAmount, _pitchAmount, _rollAmount, _thrustAmount, _horizontalAvoidance, _verticalAvoidance;
+    float _lastUpdateTime;
 
+    private bool _isEnabled = true;
 
     void Awake()
     {
         _transform = transform;
+        _lastUpdateTime = Time.time;
     }
 
     void Update()
     {
-        if (!_target) return;
-        _distanceToTaget = DistanceToTarget;
+      
+
+        if (!_isEnabled || !_target) return;
+        _distanceToTarget = DistanceToTarget;
         _localDirection = Quaternion.Inverse(_transform.rotation) * (_target.position - _transform.position);
         CheckCollisionAdvance();
-        _yawAmount = GetYawAmount();
-        _pitchAmount = GetPitchAmount();
-        _rollAmount = GetRollhAmount();
-        _thrustAmount = GetThrustAmount();
+
+        // Thay đổi thời gian giữa các lần cập nhật
+        float deltaTime = Time.time - _lastUpdateTime;
+        _lastUpdateTime = Time.time;
+
+        _yawAmount = GetYawAmount(deltaTime);
+        _pitchAmount = GetPitchAmount(deltaTime);
+        _rollAmount = GetRollAmount(deltaTime);
+        _thrustAmount = GetThrustAmount(deltaTime);
     }
 
-    float GetYawAmount()
+    float GetYawAmount(float deltaTime)
     {
         if (!_target || !_enableYaw) return 0f;
         if (!Mathf.Approximately(0f, _horizontalAvoidance)) return _horizontalAvoidance;
         _yaw = Mathf.Atan2(_localDirection.x, _localDirection.z) * Mathf.Rad2Deg;
         if (Mathf.Approximately(0, _yaw)) return 0f;
-        return _yawPidController.Update(Time.deltaTime, _yaw, 0f) * -1f;
+        return _yawPidController.Update(deltaTime, _yaw, 0f) * -1f;
     }
 
-    float GetPitchAmount()
+    float GetPitchAmount(float deltaTime)
     {
         if (!_target || !_enablePitch) return 0f;
         if (!Mathf.Approximately(0f, _verticalAvoidance)) return _verticalAvoidance;
         _pitch = Vector3.Angle(Vector3.down, _localDirection) - 90f;
-        return _pitchPidController.Update(Time.deltaTime, _pitch, 0f);
+        return _pitchPidController.Update(deltaTime, _pitch, 0f);
     }
 
-    float GetRollhAmount()
+    float GetRollAmount(float deltaTime)
     {
         if (!_target) return 0f;
         if (!Mathf.Approximately(0f, _verticalAvoidance) || !Mathf.Approximately(0f, _horizontalAvoidance)) return 0f;
         return Mathf.Abs(_yaw) > 0.25f ? _yaw * -1 : 0f;
     }
 
-    float GetThrustAmount()
+    float GetThrustAmount(float deltaTime)
     {
-        _thrust = Mathf.Lerp(_thrust, _distanceToTaget > 100f ? 1f : 0f, Time.deltaTime);
+        _thrust = Mathf.Lerp(_thrust, _distanceToTarget > 100f ? 1f : 0f, deltaTime);
         return _thrust;
     }
+
     private void CheckCollisionAdvance()
     {
         CheckForHorizontalCollision();
@@ -103,8 +112,16 @@ public partial class AiShipMovementControls : MoveMentControlBase
             _horizontalAvoidance = _collisionAvoidance.HorizontalAvoidance;
         }
     }
+
+    public void SetEnabled(bool isEnabled)
+    {
+        _isEnabled = isEnabled;
+    }
     public void SetTarget(Transform target)
     {
         _target = target;
     }
+
 }
+
+

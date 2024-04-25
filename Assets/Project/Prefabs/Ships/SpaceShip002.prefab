@@ -5985,7 +5985,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   _missileDisplayPrefab: {fileID: 7524350092411610564, guid: fcc05c6ca8dac204da2d2fc0f76d55cb, type: 3}
-  _reloadedDisplay: {fileID: 0}
+  _reloadedDisplay: {fileID: 4611917684623235577, guid: f41d8cf1b4f20bf4593a1457b0abf50e, type: 3}
   _reloadingBar: {fileID: 0}
   _reloadsRemaining: {fileID: 0}
 --- !u!114 &3087331728666417077

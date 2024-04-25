@@ -36,21 +36,27 @@ public class PIDController
         _derivativeInitialized = false;
     }
 
-    public float Update(float deltaTime, float currentValue, float targetValue)
+    public float Update(float currentValue, float targetValue, float v)
     {
         if (!_enablePid) return targetValue;
-        if (deltaTime <= 0) throw new ArgumentOutOfRangeException(nameof(deltaTime));
+
+        float deltaTime = Time.deltaTime;
+        // Check if deltaTime is almost zero, set it to a very small value to avoid division by zero
+        if (Mathf.Approximately(deltaTime, 0))
+        {
+            deltaTime = 0.0001f; // Or any other small non-zero value you prefer
+        }
 
         float error = targetValue - currentValue;
 
-        //calculate P term
+        // Calculate P term
         float P = _proportionalGain * error;
 
-        //calculate I term
+        // Calculate I term
         _integrationStored = Mathf.Clamp(_integrationStored + (error * deltaTime), -_integralSaturation, _integralSaturation);
         float I = _integralGain * _integrationStored;
 
-        //calculate both D terms
+        // Calculate both D terms
         float errorRateOfChange = (error - _lastError) / deltaTime;
         _lastError = error;
 
@@ -58,7 +64,7 @@ public class PIDController
         _lastValue = currentValue;
         _velocity = valueRateOfChange;
 
-        //choose D term to use
+        // Choose D term to use
         float deriveMeasure = 0;
 
         if (_derivativeInitialized)

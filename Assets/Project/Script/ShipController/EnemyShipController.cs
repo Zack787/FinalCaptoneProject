@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -24,6 +24,7 @@ public class EnemyShipController : ShipController
 
     GameObject PlayerShip => GameObject.FindGameObjectWithTag("Player");
     Transform _target;
+    Transform _repositionTarget; // Thêm biến để giữ tham chiếu đến điểm tái đặt
 
     public UnityEvent<int> ShipDestroyed = new UnityEvent<int>();
 
@@ -168,7 +169,12 @@ public class EnemyShipController : ShipController
 
     Transform GetRepositionTarget()
     {
-        var target = new GameObject("Reposition Target").transform;
+        if (!_repositionTarget)
+        {
+            var targetObject = new GameObject("Reposition Target");
+            _repositionTarget = targetObject.transform;
+        }
+
         var rand = Random.Range(1, 4);
         var right = _transform.right;
         var up = _transform.up;
@@ -180,8 +186,8 @@ public class EnemyShipController : ShipController
             4 => up * -1,
             _ => _transform.forward * -1
         };
-        target.position = _transform.position + direction * 250f;
-        return target;
+        _repositionTarget.position = _transform.position + direction * 250f;
+        return _repositionTarget;
     }
 
     void SetWeaponsTarget(Transform target, float attackRange, int targetMask)

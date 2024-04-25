@@ -83,6 +83,9 @@ public class ShipController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log("_shipData.PitchForce: " + _shipData.PitchForce);
+        Debug.Log("_pitchAmount: " + _pitchAmount);
+        Debug.Log("Time.fixedDeltaTime: " + Time.fixedDeltaTime);
         if (!Mathf.Approximately(0f, _pitchAmount))
         {
             _rigidBody.AddTorque(transform.right * (_shipData.PitchForce * _pitchAmount * Time.fixedDeltaTime));

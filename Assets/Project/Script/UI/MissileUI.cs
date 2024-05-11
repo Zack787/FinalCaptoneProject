@@ -35,6 +35,13 @@ public class MissileUI : MonoBehaviour
 
     void LateUpdate()
     {
+        if (_reloadingBar == null || _reloadedDisplay == null || _missileLaunchers == null || _missileLaunchers.Length == 0)
+        {
+            // Log thông báo hoặc xử lý lỗi nếu cần thiết
+            Debug.LogWarning("Some UI elements or references are missing.");
+            return;
+        }
+
         if (!_missileLaunchers[0].Reloading)
         {
             if (!_reloadedDisplay.activeSelf) return;
@@ -55,8 +62,16 @@ public class MissileUI : MonoBehaviour
 
     void UpdateMissileDisplay()
     {
+        if (_missileAmmo == null || _missileAmmo.Length != _missileLaunchers.Length)
+        {
+            Debug.LogWarning("Missile ammo array is not properly initialized or does not match the number of missile launchers.");
+            return;
+        }
+
         for (int i = 0; i < _missileAmmo.Length; ++i)
         {
+            if (_missileAmmo[i] == null || _missileLaunchers[i] == null) continue;
+
             while (_missileAmmo[i].childCount < _missileLaunchers[i].MissileCapacity)
             {
                 Instantiate(_missileDisplayPrefab, _missileAmmo[i]);
@@ -72,7 +87,10 @@ public class MissileUI : MonoBehaviour
     void OnReloadCompleted()
     {
         UpdateMissileDisplay();
-        _reloadsRemaining.text = $"Reloads: {_missileLaunchers[0].Reloads}";
+        if (_reloadsRemaining != null)
+        {
+            _reloadsRemaining.text = $"Reloads: {_missileLaunchers[0].Reloads}";
+        }
     }
 
 }

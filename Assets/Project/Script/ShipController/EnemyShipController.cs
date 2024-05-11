@@ -113,11 +113,33 @@ public class EnemyShipController : ShipController
 
     EnemyShipState Reposition()
     {
+        if (_target == null)
+        {
+            Debug.LogWarning("Target is null.");
+            return EnemyShipState.None;
+        }
+
         if (ShouldRetreat) return EnemyShipState.Retreat;
-        return Vector3.Distance(_target.position, _transform.position) < 100f
-            ? EnemyShipState.Attack
-            : EnemyShipState.Reposition;
+
+        if (_transform != null)
+        {
+            Debug.LogWarning("Transform is null.");
+            return EnemyShipState.None;
+        }
+
+        if (_target != null && _transform != null)
+        {
+            return Vector3.Distance(_target.position, _transform.position) < 100f
+                ? EnemyShipState.Attack
+                : EnemyShipState.Reposition;
+        }
+        else
+        {
+            Debug.LogWarning("Either target or transform is null.");
+            return EnemyShipState.None;
+        }
     }
+
 
     EnemyShipState Retreat()
     {

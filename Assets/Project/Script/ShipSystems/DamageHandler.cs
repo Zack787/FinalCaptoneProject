@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -28,6 +28,7 @@ public class DamageHandler : MonoBehaviour, IDamageable
         if (_explosionPrefab)
         {
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            UIManager.Instance.WinGame();
         }
         ObjectDestroyed.Invoke();
     }

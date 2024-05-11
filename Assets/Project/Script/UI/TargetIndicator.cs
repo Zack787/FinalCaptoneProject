@@ -26,7 +26,10 @@ public class TargetIndicator : MonoBehaviour
             return _screenCenter * _canvasRect.localScale.x;
         }
     }
-
+    /* void Start()
+    {
+        _mainCamera = Camera.main;
+    }*/
     public int Key { get; private set; }
     public bool LockedOn { get; set; }
 
@@ -37,17 +40,21 @@ public class TargetIndicator : MonoBehaviour
 
     void LateUpdate()
     {
-        // Get normalized position of target
-        Vector3 targetViewportPos = _mainCamera.WorldToViewportPoint(_target.position);
-
-        // Display target reticle on target
-        if (TargetIsVisible(targetViewportPos))
+        if (_mainCamera != null)
         {
-            DisplayOnScreenReticle(targetViewportPos);
-            return;
-        }
+            // Get normalized position of target
+            Vector3 targetViewportPos = _mainCamera.WorldToViewportPoint(_target.position);
+            // Display target reticle on target
+            if (TargetIsVisible(targetViewportPos))
+            {
+                DisplayOnScreenReticle(targetViewportPos);
+                return;
+            }
 
-        DisplayOffScreenReticle(targetViewportPos);
+            DisplayOffScreenReticle(targetViewportPos);
+        }
+        
+
     }
 
     public void Init(Transform target, Canvas mainCanvas)

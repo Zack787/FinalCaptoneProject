@@ -17,8 +17,27 @@ public class Targetable : MonoBehaviour
         RemoveTarget();
     }
 
+    void AddTarget()
+    {
+        if (UIManager.Instance == null)
+        {
+            UIManager.Instance.AddTarget(transform);
+        }
+        else
+        {
+            Debug.LogWarning("UIManager.Instance is null!");
+        }
+    }
+
     void RemoveTarget()
     {
-        UIManager.Instance.RemoveTarget(transform);
+        if (UIManager.Instance == null)
+        {
+            UIManager.Instance.RemoveTarget(transform);
+        }
+        else
+        {
+            Debug.LogWarning("UIManager.Instance is null!");
+        }
     }
 }

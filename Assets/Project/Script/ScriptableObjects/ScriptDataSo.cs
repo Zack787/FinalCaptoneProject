@@ -20,10 +20,10 @@ public class ShipDataSo : ScriptableObject
     [Range(10, 1000)]
     private int _blasterDamage = 100;
 
-    [Range(5000f, 25000f)]
+    [Range(1000f, 25000f)]
    
     [SerializeField]
-    int _blasterLaunchForce = 10000;
+    int _blasterLaunchForce = 1000;
   
     [SerializeField]
     float _blasterCoolDown = 0.25f;

@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
+    
 
     [SerializeField] AudioMixerGroup _soundEffectsGroup;
 

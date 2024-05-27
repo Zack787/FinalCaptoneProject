@@ -122,6 +122,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    
 
     public void GameOver()
     {

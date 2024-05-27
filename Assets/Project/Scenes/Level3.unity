@@ -4566,9 +4566,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyShipPrefab: {fileID: 4082912883366656397, guid: 1f10593601ad6244d87c7a46b6310dc2, type: 3}
-  _spawnDelay: 1
+  _spawnDelay: 5
   _minSpawnRange: 500
   _maxSpawnRange: 2000
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &7307725634024886003
 GameObject:
   m_ObjectHideFlags: 0

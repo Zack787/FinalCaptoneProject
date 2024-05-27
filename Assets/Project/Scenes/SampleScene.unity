@@ -1346,14 +1346,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3632307979024918806}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7234587237640170591}
   - {fileID: 3764184240155993545}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 9093373250212965737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2279277155390800352
 PrefabInstance:
@@ -5084,9 +5084,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyShipPrefab: {fileID: 4082912883366656397, guid: 1f10593601ad6244d87c7a46b6310dc2, type: 3}
-  _spawnDelay: 1
+  _spawnDelay: 5
   _minSpawnRange: 500
   _maxSpawnRange: 2000
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &7989231047249372560
 GameObject:
   m_ObjectHideFlags: 0
@@ -5550,6 +5553,7 @@ Transform:
   - {fileID: 3214986279617866224}
   - {fileID: 2735549114425213810}
   - {fileID: 6457165097055066309}
+  - {fileID: 2250735960713914798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &9100464314862848533
@@ -5721,9 +5725,8 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 2250735960713914798}
-  - {fileID: 9093373250212965737}
   - {fileID: 8522974943035924216}
+  - {fileID: 9093373250212965737}
   - {fileID: 7551706017832393153}
   - {fileID: 5592418492738522529}
   - {fileID: 4883481521787208157}

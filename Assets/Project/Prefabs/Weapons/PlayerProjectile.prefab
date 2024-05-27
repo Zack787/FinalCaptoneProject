@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _launchForce: 10000
-  _damage: 1000
+  _damage: 500
   _range: 5
   _impactSound: {fileID: 0}
 --- !u!82 &5256226490391488034

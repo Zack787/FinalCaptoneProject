@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 184916339}
   - component: {fileID: 184916343}
   - component: {fileID: 184916344}
+  - component: {fileID: 184916345}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -269,6 +270,18 @@ MonoBehaviour:
   - {fileID: 1340520341}
   - {fileID: 1920023702}
   - {fileID: 1091971268}
+--- !u!114 &184916345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184916338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39aaf70d5ef81d4c9e575f647baaee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &300143789
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,8 +584,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 78}
+  m_SizeDelta: {x: 835.4355, y: 493.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347996593
 MonoBehaviour:
@@ -594,10 +607,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pla,Pla
+  m_text: "     Th\u1EBF l\u1EF1c ngo\xE0i h\xE0nh tinh \u0111ang mu\u1ED1n th\u0103m
+    d\xF2 Tr\xE1i \u0110\u1EA5t \u0111\u1EC3 t\xECm c\u0103n c\u1EE9 c\u1EE7a ch\xFAng
+    ta v\xE0 ph\xE1 h\u1EE7y. \u0110\u1EC3 tr\xE1nh c\u0103n c\u1EE9 b\u1ECB ph\xE1t
+    hi\u1EC7n ch\xFAng ta ph\u1EA3i b\u1EA3o v\u1EC7 v\xE0 ti\xEAu di\u1EC7t to\xE0n
+    b\u1ED9 phi thuy\u1EC1n c\u1EE7a k\u1EBB \u0111\u1ECBch\n\n=======================================\nTH\xD4NG
+    TIN K\u1EBA \u0110\u1ECACH:\n + S\u1ED1 l\u01B0\u1EE3ng: 1\n + D\u1EA1ng phi
+    thuy\u1EC1n: Du k\xEDch h\u1EA1ng n\u1EB7ng\n\n=======================================\nNHI\u1EC6M
+    V\u1EE4:\n + Ti\xEAu di\u1EC7t phi tuy\u1EC1n k\u1EBB \u0111\u1ECBch"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -657,7 +677,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -40.996613}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1354,7 +1374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1091971268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,18 +1427,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 184916344}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1660,8 +1668,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -5.4542, y: 54.7593}
+  m_SizeDelta: {x: 818.4962, y: 496.4943}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1206605345
 MonoBehaviour:
@@ -1683,10 +1691,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pla,Pla
+  m_text: "     HI\u1EC7n t\u1EA1i, h\u1EC7 m\u1EB7t tr\u1EDDi \u0111ang b\u1ECB
+    c\xE1c th\u1EBF l\u1EF1c ngo\xE0i h\xE0nh tinh x\xE2m chi\u1EBFm. Tr\xE1i \u0110\u1EA5t
+    l\xE0 h\xE0nh tinh \u0111\u1EA7u ti\xEAn b\u1ECB nh\u1EAFm t\u1EDBi.\n\n=======================================\nTH\xD4NG
+    TIN K\u1EBA \u0110\u1ECACH:\n + S\u1ED1 l\u01B0\u1EE3ng: 1\n + D\u1EA1ng phi
+    thuy\u1EC1n: Du k\xEDch\n\n=======================================\nNHI\u1EC6M
+    V\u1EE4:\n + Ti\xEAu di\u1EC7t phi tuy\u1EC1n du k\xEDch"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1718,7 +1731,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2198,18 +2211,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 184916344}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1335512146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2343,18 +2344,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 184916344}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1340520342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2478,7 +2467,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 184916343}
         m_TargetAssemblyTypeName: TaskBoard, Assembly-CSharp
-        m_MethodName: PlayLevel1
+        m_MethodName: PlayLevel4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2688,7 +2677,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 184916343}
         m_TargetAssemblyTypeName: TaskBoard, Assembly-CSharp
-        m_MethodName: PlayLevel1
+        m_MethodName: PlayLevel2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3298,9 +3287,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 184916343}
-        m_TargetAssemblyTypeName: TaskBoard, Assembly-CSharp
-        m_MethodName: OnClickBackButton
+      - m_Target: {fileID: 184916345}
+        m_TargetAssemblyTypeName: BackButton, Assembly-CSharp
+        m_MethodName: OnclickBackButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3566,7 +3555,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 184916343}
         m_TargetAssemblyTypeName: TaskBoard, Assembly-CSharp
-        m_MethodName: PlayLevel1
+        m_MethodName: PlayLevel3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3709,18 +3698,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 184916344}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1920023703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3793,8 +3770,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.0001, y: 72.9575}
+  m_SizeDelta: {x: 840.1426, y: 454.796}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988569052
 MonoBehaviour:
@@ -3816,10 +3793,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pla,Pla
+  m_text: "TH\xD4NG B\xC1O KH\u1EA8N C\u1EA4P: \u0110\xE3 c\xF3 1 chi\u1EBFc phi
+    thuy\u1EC1n du k\xEDch c\u1EE7a k\u1EBB \u0111\u1ECBch \u0111\xE3 x\xE2m nh\u1EADp
+    v\xE0o khu v\u1EF1c g\u1EA7n Tr\xE1i \u0110\u1EA5t................\n\n=======================================\nTH\xD4NG
+    TIN K\u1EBA \u0110\u1ECACH:\n + S\u1ED1 l\u01B0\u1EE3ng: 1\n + D\u1EA1ng phi
+    thuy\u1EC1n: Du k\xEDch\n\n=======================================\nNHI\u1EC6M
+    V\u1EE4:\n + Ti\xEAu di\u1EC7t phi tuy\u1EC1n du k\xEDch \u0111ang x\xE2m nh\u1EADp"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -1830,7 +1830,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191369712364633261}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a42fa4b33e49085419759f869cbb7a0b, type: 3}
   m_Name: 
@@ -9728,6 +9728,7 @@ GameObject:
   - component: {fileID: 6433182676635617844}
   - component: {fileID: 1414002436235498106}
   - component: {fileID: 1718276206996482374}
+  - component: {fileID: 4587012169810730693}
   m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
@@ -9812,11 +9813,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93679f269fa4b9459c9165dcb75e172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageHandler: {fileID: 1414002436235498106}
+  _damageHandlerShield: {fileID: 4587012169810730693}
   _flashColor: {r: 0.40943396, g: 0.9485624, b: 1, a: 1}
   _fadeOutTime: 0.5
-  _minIntensity: -10
-  _maxIntensity: 0
+  _minIntensity: 1
+  _maxIntensity: 10
 --- !u!114 &1414002436235498106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9852,6 +9853,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4587012169810730693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493807936681612584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42572db751909ea488dd3acdfad79b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionPrefab: {fileID: 2664181499801522139, guid: 0603f7c876c488b468f05aebf7019ffa, type: 3}
 --- !u!1 &8550907632202601481
 GameObject:
   m_ObjectHideFlags: 0

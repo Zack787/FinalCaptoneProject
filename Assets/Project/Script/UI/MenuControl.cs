@@ -14,17 +14,20 @@ public class MenuControl : MonoBehaviour
         Cursor.visible = true;
 
     }
-    public void Play1v1()
+   /* public void Play1v1()
     {
         Application.LoadLevel("Play1v1");
         Time.timeScale = 1;
-    }
+    }*/
     public void Play()
     {
-        Application.LoadLevel("ChooseRound");
+        Application.LoadLevel("Guide");
         Time.timeScale = 1;
     }
-    
+    public void OnClickAbout()
+    {
+        SceneManager.LoadScene("About");
+    }
     public void OnClickSetting()
     {
         MainMenu.SetActive(false);
@@ -39,7 +42,7 @@ public class MenuControl : MonoBehaviour
 
     }
 
-    
+   
     // Update is called once per frame
     void Update()
     {
